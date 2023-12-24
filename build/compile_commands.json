@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/server.dir/main.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/main.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/main.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/acceptor.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/acceptor.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/acceptor.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/buffer.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/buffer.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/buffer.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/channel.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/channel.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/channel.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/epoller.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/epoller.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/epoller.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/eventloop.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/eventloop.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/eventloop.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/loopthreadpool.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/loopthreadpool.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/loopthreadpool.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/tcpconnection.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpconnection.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpconnection.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++    -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/netlib.dir/tcpserver.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpserver.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpserver.cpp"
+}
+]

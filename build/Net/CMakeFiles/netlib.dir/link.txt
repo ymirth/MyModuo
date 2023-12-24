@@ -1,0 +1,2 @@
+/opt/rh/devtoolset-9/root/usr/bin/ar cr libnetlib.a  CMakeFiles/netlib.dir/acceptor.cpp.o CMakeFiles/netlib.dir/buffer.cpp.o CMakeFiles/netlib.dir/channel.cpp.o CMakeFiles/netlib.dir/epoller.cpp.o CMakeFiles/netlib.dir/eventloop.cpp.o CMakeFiles/netlib.dir/loopthreadpool.cpp.o CMakeFiles/netlib.dir/tcpconnection.cpp.o CMakeFiles/netlib.dir/tcpserver.cpp.o
+/opt/rh/devtoolset-9/root/usr/bin/ranlib libnetlib.a

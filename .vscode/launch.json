@@ -1,7 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "cmake",
             "request": "launch",
@@ -44,6 +43,13 @@
                 }
             ],
             "preLaunchTask": "build"
+        },
+        {
+            "name": "CMake: CMake Script",
+            "type": "cmake",
+            "request": "launch",
+            "cmakeDebugType": "script",
+            "scriptPath": "${file}"
         }
     ]
 }

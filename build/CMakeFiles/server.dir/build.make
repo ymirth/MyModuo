@@ -85,6 +85,7 @@ server_EXTERNAL_OBJECTS =
 server: CMakeFiles/server.dir/main.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: Net/libnetlib.a
+server: Http/libhttplib.a
 server: CMakeFiles/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)

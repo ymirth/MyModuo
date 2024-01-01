@@ -23,7 +23,6 @@ public:
     uint32_t events() const { return m_events; }
     void setEvents(uint32_t evt) { m_events = evt; }
     void setRevents(uint32_t revt) { m_revents = revt; }
-    bool EventRegistered() const { return m_events != 0; }
 
     ChannelIndex index() const { return m_index; }                     // kNew, kAdded, kDeleted
     void setIndex(ChannelIndex idx) { m_index = idx; }       // kNew, kAdded, kDeleted

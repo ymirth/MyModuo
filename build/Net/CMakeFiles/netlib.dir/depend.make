@@ -30,6 +30,9 @@ Net/CMakeFiles/netlib.dir/loopthreadpool.cpp.o: ../Net/eventloop.h
 Net/CMakeFiles/netlib.dir/loopthreadpool.cpp.o: ../Net/loopthreadpool.cpp
 Net/CMakeFiles/netlib.dir/loopthreadpool.cpp.o: ../Net/loopthreadpool.h
 
+Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Http/httprequest.h
+Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Http/httprequestparser.h
+Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Http/httpstate.h
 Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/address.h
 Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/buffer.h
 Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/callback.h
@@ -39,6 +42,9 @@ Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/eventloop.h
 Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/tcpconnection.cpp
 Net/CMakeFiles/netlib.dir/tcpconnection.cpp.o: ../Net/tcpconnection.h
 
+Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Http/httprequest.h
+Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Http/httprequestparser.h
+Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Http/httpstate.h
 Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Net/acceptor.h
 Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Net/address.h
 Net/CMakeFiles/netlib.dir/tcpserver.cpp.o: ../Net/buffer.h

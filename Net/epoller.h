@@ -37,15 +37,11 @@ public:
     void poll(std::vector<Channel *> &active_channels);
 
     void fillActiveChannels(int num_events, std::vector<Channel *> &active_channels) const;
-    bool setNonBlocking(int fd);
 
-    
     int wait(int timeout_ms = -1)
     {  // -1 means wait forever
         return epoll_wait(m_epoll_fd, &m_events[0], static_cast<int>(m_events.size()), timeout_ms);
     }
-    int getEventFd(size_t i) const{ return m_events[i].data.fd;}
-    uint32_t getEvents(size_t i) const{ return m_events[i].events;}
 };
 
 #endif

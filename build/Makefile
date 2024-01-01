@@ -127,6 +127,19 @@ netlib/fast:
 	$(MAKE) -f Net/CMakeFiles/netlib.dir/build.make Net/CMakeFiles/netlib.dir/build
 .PHONY : netlib/fast
 
+#=============================================================================
+# Target rules for targets named httplib
+
+# Build rule for target.
+httplib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 httplib
+.PHONY : httplib
+
+# fast build rule for target.
+httplib/fast:
+	$(MAKE) -f Http/CMakeFiles/httplib.dir/build.make Http/CMakeFiles/httplib.dir/build
+.PHONY : httplib/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -161,6 +174,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... server"
 	@echo "... netlib"
+	@echo "... httplib"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

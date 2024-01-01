@@ -1,1 +1,1 @@
-/opt/rh/devtoolset-9/root/usr/bin/g++    -g -g    CMakeFiles/server.dir/main.cpp.o  -o server -rdynamic Net/libnetlib.a -lpthread 
+/opt/rh/devtoolset-9/root/usr/bin/g++    -g -g    CMakeFiles/server.dir/main.cpp.o  -o server -rdynamic -lpthread Net/libnetlib.a Http/libhttplib.a 

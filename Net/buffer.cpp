@@ -12,7 +12,7 @@ int Buffer::readFd(int fd)
     vec[1].iov_len = sizeof(extrabuf);
     const int iovcnt = (writeable < sizeof(extrabuf)) ? 2 : 1;
     // readv: 从fd中读取数据到vec中
-    const int n = readv(fd, vec, iovcnt);
+    const int n = ::readv(fd, vec, iovcnt);
     if(n < 0)
     {
         //log errors

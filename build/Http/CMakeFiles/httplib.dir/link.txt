@@ -1,0 +1,2 @@
+/opt/rh/devtoolset-9/root/usr/bin/ar cr libhttplib.a  CMakeFiles/httplib.dir/httpresponse.cpp.o CMakeFiles/httplib.dir/httprequest.cpp.o CMakeFiles/httplib.dir/httpserver.cpp.o CMakeFiles/httplib.dir/httprequestparser.cpp.o
+/opt/rh/devtoolset-9/root/usr/bin/ranlib libhttplib.a

@@ -42,10 +42,10 @@ void TcpConnection::connectionDestructor()
     if (m_state == ConnectionState::kConnected || m_state == ConnectionState::kDisconnecting)
     {
         m_state = ConnectionState::kDisconnected;
-        m_channel->disableAll();
-        m_connection_callback(shared_from_this(), &m_input_buffer);
+        m_channel->disableAll();  // 1. disable all events 2. remove from poller
     }
-    m_loop->remove(m_channel.get());
+    m_connection_callback(shared_from_this(), &m_input_buffer);
+    // m_loop->remove(m_channel.get());
 }
 
 void TcpConnection::handleRead()
@@ -69,7 +69,7 @@ void TcpConnection::handleRead()
 }
 
 void TcpConnection::handleWrite()
-{
+{// 将buffer中数据写入fd中
     m_loop->assertInLoopThread();
     if (m_channel->isWriting())
     {
@@ -108,7 +108,7 @@ void TcpConnection::handleClose()
     m_state = ConnectionState::kDisconnected;
     m_channel->disableAll();
     
-    m_close_callback(shared_from_this());
+    m_close_callback(shared_from_this()); // TcpServer::removeConnection()->TcpConnection::connectionDestructor()
 }
 
 
@@ -201,6 +201,7 @@ void TcpConnection::sendInLoop(const char* msg, int len)
     }
     if (!m_channel->isWriting() && m_output_buffer.readableBytes() == 0)
     {
+        // write: 将msg中的数据写入fd中
         wroteNum = ::write(m_conn_fd, msg, len);
         if (wroteNum >= 0)
         {
@@ -221,7 +222,7 @@ void TcpConnection::sendInLoop(const char* msg, int len)
     }
     assert(remaining <= len);
     if (!faultError && remaining > 0)
-    {
+    {// 1. no error 2. remaining data: append to output_buffer
         m_output_buffer.append(msg + wroteNum, remaining);
         if (!m_channel->isWriting()) // if not writing, enable writing: for handleWrite() to deal with left data
         {

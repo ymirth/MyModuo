@@ -60,9 +60,10 @@ CMAKE_BINARY_DIR = /home/ymirth/study/cpp_code/linux_learning/webserver/build
 
 # All Build rule for target.
 CMakeFiles/server.dir/all: Net/CMakeFiles/netlib.dir/all
+CMakeFiles/server.dir/all: Http/CMakeFiles/httplib.dir/all
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  13
 	@echo "Built target server"
 .PHONY : CMakeFiles/server.dir/all
 
@@ -72,7 +73,7 @@ all: CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 13
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule
@@ -112,7 +113,7 @@ Net/preinstall:
 Net/CMakeFiles/netlib.dir/all:
 	$(MAKE) -f Net/CMakeFiles/netlib.dir/build.make Net/CMakeFiles/netlib.dir/depend
 	$(MAKE) -f Net/CMakeFiles/netlib.dir/build.make Net/CMakeFiles/netlib.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  1 2 3 4 5 6 7 8
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  5 6 7 8 9 10 11 12
 	@echo "Built target netlib"
 .PHONY : Net/CMakeFiles/netlib.dir/all
 
@@ -138,6 +139,56 @@ Net/CMakeFiles/netlib.dir/clean:
 
 # clean rule for target.
 clean: Net/CMakeFiles/netlib.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Http
+
+# Convenience name for "all" pass in the directory.
+Http/all: Http/CMakeFiles/httplib.dir/all
+.PHONY : Http/all
+
+# Convenience name for "clean" pass in the directory.
+Http/clean: Http/CMakeFiles/httplib.dir/clean
+.PHONY : Http/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Http/preinstall:
+.PHONY : Http/preinstall
+
+#=============================================================================
+# Target rules for target Http/CMakeFiles/httplib.dir
+
+# All Build rule for target.
+Http/CMakeFiles/httplib.dir/all:
+	$(MAKE) -f Http/CMakeFiles/httplib.dir/build.make Http/CMakeFiles/httplib.dir/depend
+	$(MAKE) -f Http/CMakeFiles/httplib.dir/build.make Http/CMakeFiles/httplib.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  1 2 3 4
+	@echo "Built target httplib"
+.PHONY : Http/CMakeFiles/httplib.dir/all
+
+# Include target in all.
+all: Http/CMakeFiles/httplib.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Http/CMakeFiles/httplib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 Http/CMakeFiles/httplib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 0
+.PHONY : Http/CMakeFiles/httplib.dir/rule
+
+# Convenience name for target.
+httplib: Http/CMakeFiles/httplib.dir/rule
+.PHONY : httplib
+
+# clean rule for target.
+Http/CMakeFiles/httplib.dir/clean:
+	$(MAKE) -f Http/CMakeFiles/httplib.dir/build.make Http/CMakeFiles/httplib.dir/clean
+.PHONY : Http/CMakeFiles/httplib.dir/clean
+
+# clean rule for target.
+clean: Http/CMakeFiles/httplib.dir/clean
 .PHONY : clean
 
 #=============================================================================

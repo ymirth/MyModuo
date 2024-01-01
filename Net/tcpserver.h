@@ -13,7 +13,7 @@ class Address;
 class TcpConnection;
 class Acceptor;
 class LoopThreadPool;
-class threadpool;
+// class threadpool;
 
 class TcpServer{
 public:

@@ -11,6 +11,7 @@
 
 #include"buffer.h"
 #include"channel.h"
+#include"httprequestparser.h"
 
 class EventLoop;
 class Address;
@@ -46,16 +47,18 @@ public:
     #pragma endregion set callback
 
     // Must be called in loop thread
+    // call ConnectionCallback
     void connectionEstablished();   // enable reading and add to poller
     void connectionDestructor();    // disable all and remove from poller
 
     // Callback for m_channel
     // must be called in loop thread
     // m_channel->handleEvent() -> m_channel->handleEventWithGuard()
-    void handleRead();
-    void handleWrite();   // disable writing if no left data
+    // use BUFFER to read and write
+    void handleRead();    // fd -> buffer ; call MessageCallback (send() -> handleWrite())
+    void handleWrite();   // buffer -> fd ; if buffer is empty, disable writing
     void handleError();
-    void handleClose();
+    void handleClose();   // handleClose() -> connectionDestructor()
 
     // Thread safe api: can be called in other threads
     void shutDown(); 
@@ -64,9 +67,10 @@ public:
     // Thread safe api: can be called in other threads
     void forceClose();
     void forceCloseInLoop();// must be called in loop thread
-
+ 
     // Thread safe api: can be called in other threads
-    // Nonblocking: enable writing for handleWrite() to deal with left data
+    // store data in output buffer if cannot send all data 
+    // Async & Nonblocking: enable writing for handleWrite() to deal with left data
     void send(const std::string &message);
     void send(const char *message, int len);
     void send(Buffer *message);
@@ -80,6 +84,8 @@ public:
     int getId() const { return m_conn_id; }
     EventLoop* getLoop() const { return m_loop; }
     int getErrno() const{ return errno; }
+    HttpRequestParser* getHttpRequestParser() { return &m_parser; }
+
     bool isShutdown() const { return m_state == ConnectionState::kDisconnecting; }
     bool isConnected() const { return m_state == ConnectionState::kConnected; }
     bool isDisconnected() const { return m_state == ConnectionState::kDisconnected; }
@@ -98,6 +104,7 @@ private:
     std::unique_ptr<Channel> m_channel;
     Buffer m_input_buffer;
     Buffer m_output_buffer;
+    HttpRequestParser m_parser;
 
     // httpcontent
     // timestamp

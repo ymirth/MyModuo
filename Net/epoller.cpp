@@ -39,22 +39,7 @@ Epoller &Epoller::operator=(Epoller &&epoller)
     return *this;
 }
 
-bool Epoller::setNonBlocking(int fd)
-{
-    int flag = fcntl(fd, F_GETFL, 0);
-    if (flag < 0)
-    {
-        perror("fcntl");
-        return false;
-    }
-    flag |= O_NONBLOCK;
-    if (fcntl(fd, F_SETFL, flag) < 0)
-    {
-        perror("fcntl");
-        return false;
-    }
-    return true;
-}
+
 
 void Epoller::updateChannel(Channel *channel)
 {
@@ -80,7 +65,7 @@ void Epoller::updateChannel(Channel *channel)
         assert(m_channels.find(fd) != m_channels.end());
         assert(m_channels[fd] == channel);
         assert(index == ChannelIndex::kAdded);
-        if(channel->EventRegistered())
+        if(channel->isRegistered())
         {
             update(EPOLL_CTL_MOD, channel);
         }
@@ -100,7 +85,7 @@ void Epoller::removeChannel(Channel *channel)
 
     assert(m_channels.find(fd) != m_channels.end());
     assert(m_channels[fd] == channel);
-    assert(channel->isRegistered());
+    //assert(channel->isRegistered());
     assert(channel->index() == ChannelIndex::kAdded);
     
     if(index == ChannelIndex::kAdded)

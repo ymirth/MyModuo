@@ -126,6 +126,8 @@ public:
         retrieveAll();
         return str;
     }
+    
+    // 读取fd中的数据到缓存中
     int readFd(int fd); 
 };
 

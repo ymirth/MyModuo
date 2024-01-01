@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../Net/buffer.h
+vector
+-
+string
+-
+assert.h
+-
+cstring
+-
+atomic
+-
+algorithm
+-
+
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.cpp
+buffer.h
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/buffer.h
+httpresponse.h
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.h
+
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.h
+string
+-
+httpstate.h
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpstate.h
+
+/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpstate.h
+

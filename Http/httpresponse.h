@@ -10,9 +10,7 @@ class HttpResponse
 {
 public:
     explicit HttpResponse(bool close)
-        : m_close_connection(close), m_type("text/html"), m_status_code(HttpStatusCode::k200OK)
-    {
-    }
+        : m_close_connection(close), m_type("text/html"), m_status_code(HttpStatusCode::k200OK){}
     ~HttpResponse() = default;
 
     void setStatusCode(HttpStatusCode code) { m_status_code = code; }

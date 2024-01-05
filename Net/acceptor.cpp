@@ -102,9 +102,10 @@ Acceptor::Acceptor(EventLoop *loop, const Address &address) :
 
 Acceptor::~Acceptor()
 {
-    m_accept_channel->disableAll();
-    m_loop->remove(m_accept_channel.get());
+    // m_accept_channel->disableAll();
+    // m_loop->remove(m_accept_channel.get());
     ::close(m_listen_fd);
+    ::close(m_idle_fd);
 }
 
 void Acceptor::handleConnect()

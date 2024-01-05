@@ -45,7 +45,7 @@ void TcpConnection::connectionDestructor()
         m_channel->disableAll();  // 1. disable all events 2. remove from poller
     }
     m_connection_callback(shared_from_this(), &m_input_buffer);
-    // m_loop->remove(m_channel.get());
+    m_loop->remove(m_channel.get());
 }
 
 void TcpConnection::handleRead()

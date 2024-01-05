@@ -19,7 +19,7 @@ private:
     // (int, Address) : (conn_fd, peer_addr)
 public:
     Acceptor(EventLoop *loop, const Address &address);
-    ~Acceptor();            // default destructor ; need to close(m_listen_fd) by myself
+    ~Acceptor();                                     // close listen_fd and idle_fd
     Acceptor(const Acceptor &) = delete;
     Acceptor(Acceptor &&) = delete;
     Acceptor &operator=(const Acceptor &) = delete;

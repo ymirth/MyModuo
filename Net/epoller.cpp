@@ -39,33 +39,36 @@ Epoller &Epoller::operator=(Epoller &&epoller)
     return *this;
 }
 
-
+bool Epoller::hasChannel(Channel *channel) const
+{
+    auto it = m_channels.find(channel->fd());
+    return it != m_channels.end() && it->second == channel;
+}
 
 void Epoller::updateChannel(Channel *channel)
 {
     ChannelIndex index = channel->index();
-    if(index == ChannelIndex::kNew || index == ChannelIndex::kDeleted)
+    if(index == ChannelIndex::kNew || index == ChannelIndex::kDeleted) 
     {
         int fd = channel->fd();
         if(index == ChannelIndex::kNew)
         {
             m_channels[fd] = channel;
         }
-        else
-        {
-            assert(m_channels.find(fd) != m_channels.end());
-            assert(m_channels[fd] == channel);
+        else // index == ChannelIndex::kDeleted
+        {// ensure fd is in m_channels to call update(op, channel)
+            assert(m_channels.find(fd) != m_channels.end()); // fd must be in m_channels
+            assert(m_channels[fd] == channel);               // channel must be in m_channels
         }
         channel->setIndex(ChannelIndex::kAdded);
         update(EPOLL_CTL_ADD, channel);
     }
-    else
+    else // index == ChannelIndex::kAdded
     {
         int fd = channel->fd();
         assert(m_channels.find(fd) != m_channels.end());
         assert(m_channels[fd] == channel);
-        assert(index == ChannelIndex::kAdded);
-        if(channel->isRegistered())
+        if(channel->isRegistered())  // events != 0
         {
             update(EPOLL_CTL_MOD, channel);
         }
@@ -79,23 +82,21 @@ void Epoller::updateChannel(Channel *channel)
 }
 
 void Epoller::removeChannel(Channel *channel)
-{
+{// channel == kDeleted or kAdded
     int fd = channel->fd();
-    ChannelIndex index = channel->index();
-
+    auto index = channel->index();
+    
     assert(m_channels.find(fd) != m_channels.end());
     assert(m_channels[fd] == channel);
-    //assert(channel->isRegistered());
-    assert(channel->index() == ChannelIndex::kAdded);
     
+    assert(index == ChannelIndex::kAdded || index == ChannelIndex::kDeleted);
     if(index == ChannelIndex::kAdded)
     {
         update(EPOLL_CTL_DEL, channel);
+        channel->setIndex(ChannelIndex::kDeleted);
     }
-    m_channels.erase(fd);  // remove from map， must before set_index
-
-    channel->setIndex(ChannelIndex::kDeleted);
-    
+   
+    m_channels.erase(fd);
 }
 
 void Epoller::update(int op, Channel *channel)

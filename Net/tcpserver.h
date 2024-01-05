@@ -18,7 +18,7 @@ class LoopThreadPool;
 class TcpServer{
 public:
     TcpServer(EventLoop *loop, const Address &listen_addr);
-    ~TcpServer();
+    ~TcpServer(); // 1. call tcpconnection::connectionDestructor() 2. call member destructor
 
     void Start() ;
     void setThreadNum(int num_threads);

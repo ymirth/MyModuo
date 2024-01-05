@@ -36,6 +36,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net/cmake_install.cmake")
   INCLUDE("/home/ymirth/study/cpp_code/linux_learning/webserver/build/Http/cmake_install.cmake")
+  INCLUDE("/home/ymirth/study/cpp_code/linux_learning/webserver/build/Timer/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

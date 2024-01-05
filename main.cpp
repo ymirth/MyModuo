@@ -29,15 +29,6 @@ void resCallback(const HttpRequest &request, HttpResponse *resp)
     }
     cout << "request path is " << request.path() << std::endl;
 
-    // response.setStatusCode(HttpStatusCode::k200OK);
-    // response.setStatusMessage("OK");
-    // response.setCloseConnection(false);
-    // response.setContentType("text/html");
-    // response.setBody("<html><head><title>This is title</title></head>"
-    //                  "<body><h1>Hello</h1>Now is "
-    //                  + std::to_string(time(NULL)) +
-    //                  "</body></html>");
-
     {
         const string &path = request.path();
         if (path == "/")
@@ -76,7 +67,8 @@ int main(int argc, char *argv[])
     EventLoop loop;
     Address address("0.0.0.0", 9090);
     HttpServer server(&loop, address);
-    server.setThreadNum(4);
+    cout<<std::thread::hardware_concurrency()<<std::endl;
+    server.setThreadNum(8);
     server.setResponseCallback(resCallback);
     server.start();
     loop.loop();

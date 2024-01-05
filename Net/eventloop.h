@@ -1,16 +1,19 @@
 #ifndef EVENTLOOP_H
 #define EVENTLOOP_H
 
-#include <functional>
-#include <memory>
 #include <sys/epoll.h>
 #include <unistd.h>
+
+#include <functional>
+#include <memory>
 #include <mutex>
 #include <thread>
 #include <iostream>
 
-class Channel;
 #include"epoller.h"
+
+class RBTreeTimer;
+class Channel;
 
 class EventLoop
 {
@@ -22,7 +25,7 @@ private:
     int m_wakeup_fd;
     std::unique_ptr<Channel> m_wakeup_channel; // bind to m_wakeup_fd
 
-    // add timer
+    std::unique_ptr<RBTreeTimer> m_timer;
 
     bool m_calling_pending_functors; // indicate: is calling pending functors
     std::vector<Channel *> m_active_channels;
@@ -46,8 +49,11 @@ public:
     void queueInLoop(std::function<void()> cb);
     void wakeup();
     void handleRead();
+
     void update(Channel *channel) { m_epoller->updateChannel(channel); }
     void remove(Channel *channel) { m_epoller->removeChannel(channel); }
+    bool hasChannel(Channel *channel) const{    return m_epoller->hasChannel(channel);}
+
     bool isInLoopThread() const
     {
         return m_thread_id == std::this_thread::get_id();
@@ -60,6 +66,7 @@ public:
             abort();
         }
     }
+    
     void doPendingFunctors();
 };
 

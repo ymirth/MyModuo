@@ -20,6 +20,9 @@ Net/CMakeFiles/netlib.dir/epoller.cpp.o: ../Net/channel.h
 Net/CMakeFiles/netlib.dir/epoller.cpp.o: ../Net/epoller.cpp
 Net/CMakeFiles/netlib.dir/epoller.cpp.o: ../Net/epoller.h
 
+Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Timer/rbtreetimer.h
+Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Timer/timer.h
+Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Timer/timestamp.h
 Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Net/channel.h
 Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Net/epoller.h
 Net/CMakeFiles/netlib.dir/eventloop.cpp.o: ../Net/eventloop.cpp

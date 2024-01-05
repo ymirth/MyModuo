@@ -140,6 +140,19 @@ httplib/fast:
 	$(MAKE) -f Http/CMakeFiles/httplib.dir/build.make Http/CMakeFiles/httplib.dir/build
 .PHONY : httplib/fast
 
+#=============================================================================
+# Target rules for targets named timerlib
+
+# Build rule for target.
+timerlib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 timerlib
+.PHONY : timerlib
+
+# fast build rule for target.
+timerlib/fast:
+	$(MAKE) -f Timer/CMakeFiles/timerlib.dir/build.make Timer/CMakeFiles/timerlib.dir/build
+.PHONY : timerlib/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -175,6 +188,7 @@ help:
 	@echo "... server"
 	@echo "... netlib"
 	@echo "... httplib"
+	@echo "... timerlib"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

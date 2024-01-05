@@ -61,6 +61,7 @@ CMAKE_BINARY_DIR = /home/ymirth/study/cpp_code/linux_learning/webserver/build
 # All Build rule for target.
 CMakeFiles/server.dir/all: Net/CMakeFiles/netlib.dir/all
 CMakeFiles/server.dir/all: Http/CMakeFiles/httplib.dir/all
+CMakeFiles/server.dir/all: Timer/CMakeFiles/timerlib.dir/all
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  13
@@ -73,7 +74,7 @@ all: CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule
@@ -189,6 +190,56 @@ Http/CMakeFiles/httplib.dir/clean:
 
 # clean rule for target.
 clean: Http/CMakeFiles/httplib.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Timer
+
+# Convenience name for "all" pass in the directory.
+Timer/all: Timer/CMakeFiles/timerlib.dir/all
+.PHONY : Timer/all
+
+# Convenience name for "clean" pass in the directory.
+Timer/clean: Timer/CMakeFiles/timerlib.dir/clean
+.PHONY : Timer/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Timer/preinstall:
+.PHONY : Timer/preinstall
+
+#=============================================================================
+# Target rules for target Timer/CMakeFiles/timerlib.dir
+
+# All Build rule for target.
+Timer/CMakeFiles/timerlib.dir/all:
+	$(MAKE) -f Timer/CMakeFiles/timerlib.dir/build.make Timer/CMakeFiles/timerlib.dir/depend
+	$(MAKE) -f Timer/CMakeFiles/timerlib.dir/build.make Timer/CMakeFiles/timerlib.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles  14
+	@echo "Built target timerlib"
+.PHONY : Timer/CMakeFiles/timerlib.dir/all
+
+# Include target in all.
+all: Timer/CMakeFiles/timerlib.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Timer/CMakeFiles/timerlib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 Timer/CMakeFiles/timerlib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ymirth/study/cpp_code/linux_learning/webserver/build/CMakeFiles 0
+.PHONY : Timer/CMakeFiles/timerlib.dir/rule
+
+# Convenience name for target.
+timerlib: Timer/CMakeFiles/timerlib.dir/rule
+.PHONY : timerlib
+
+# clean rule for target.
+Timer/CMakeFiles/timerlib.dir/clean:
+	$(MAKE) -f Timer/CMakeFiles/timerlib.dir/build.make Timer/CMakeFiles/timerlib.dir/clean
+.PHONY : Timer/CMakeFiles/timerlib.dir/clean
+
+# clean rule for target.
+clean: Timer/CMakeFiles/timerlib.dir/clean
 .PHONY : clean
 
 #=============================================================================

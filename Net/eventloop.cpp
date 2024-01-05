@@ -1,14 +1,15 @@
-#include"channel.h"
-#include"epoller.h"
+#include<sys/eventfd.h>
+#include<unistd.h>
 
 #include<functional>
 #include<thread>
 #include<memory>
 #include<mutex>
 #include<string>
-// eventfd headfile
-#include<sys/eventfd.h>
-#include<unistd.h>
+
+#include"channel.h"
+#include"epoller.h"
+#include"rbtreetimer.h"
 
 #include"eventloop.h"
 
@@ -18,6 +19,7 @@ EventLoop::EventLoop()
     m_epoller(new Epoller()),
     m_wakeup_fd(::eventfd(0, EFD_CLOEXEC | EFD_NONBLOCK)),// count = 0: no need to block
     m_wakeup_channel(new Channel(this, m_wakeup_fd)),
+    m_timer(new RBTreeTimer(this)),
     m_calling_pending_functors(false),
     m_active_channels(0), //create a vector with 0 elements
     m_pending_functors(0) //create a vector with 0 elements
@@ -30,8 +32,8 @@ EventLoop::EventLoop()
 EventLoop::~EventLoop()
 {
     if(m_looping) m_looping = false;
-    m_wakeup_channel->disableAll();
-    m_epoller->removeChannel(m_wakeup_channel.get());
+    // m_wakeup_channel->disableAll();
+    // m_epoller->removeChannel(m_wakeup_channel.get());
     ::close(m_wakeup_fd);
 }
 

@@ -38,6 +38,8 @@ public:
 
     void fillActiveChannels(int num_events, std::vector<Channel *> &active_channels) const;
 
+    bool hasChannel(Channel *channel) const;
+
     int wait(int timeout_ms = -1)
     {  // -1 means wait forever
         return epoll_wait(m_epoll_fd, &m_events[0], static_cast<int>(m_events.size()), timeout_ms);

@@ -1,4 +1,4 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/netlib.dir/acceptor.cpp.o"
   "CMakeFiles/netlib.dir/buffer.cpp.o"
   "CMakeFiles/netlib.dir/channel.cpp.o"
@@ -12,6 +12,6 @@ FILE(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/netlib.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang CXX)
+  include(CMakeFiles/netlib.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

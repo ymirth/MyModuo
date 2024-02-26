@@ -1,5 +1,6 @@
 #include<sys/eventfd.h>
 #include<unistd.h>
+#include<signal.h>
 
 #include<functional>
 #include<thread>
@@ -12,6 +13,19 @@
 #include"rbtreetimer.h"
 
 #include"eventloop.h"
+
+namespace {
+
+class IgnoreSigPipe {
+ public:
+  IgnoreSigPipe() {
+    ::signal(SIGPIPE, SIG_IGN);
+  }
+};
+
+IgnoreSigPipe initObj;
+
+}  // namespace
 
 EventLoop::EventLoop()
     :m_looping(false),

@@ -7,6 +7,8 @@
 #include"tcpconnection.h"
 #include"loopthreadpool.h"
 
+#include"logging.h"
+
 #include"tcpserver.h"
 
 #include<string>
@@ -54,7 +56,9 @@ void TcpServer::handleNewConnection(int conn_fd, const Address &con_addr)
     
    // log info by cout
     std::string conn_name = m_ipport + " #" + std::to_string(m_next_connection_id);
-    std::cout << "New connection: " << conn_name << " from " << con_addr.ip() << ":" << con_addr.port() << std::endl;
+    // std:: << "New connection: " << conn_name << " from " << con_addr.ip() << ":" << con_addr.port() << std::endl;
+    LOG_INFO << "New connection: " << conn_name << " from " << con_addr.ip() << ":" << con_addr.port()<<"\n";
+    ptr->setIPPort(con_addr.ip(), con_addr.port());
 
     // set callback: connection/message/close
     ptr->setConnectionCallback(m_connection_callback);
@@ -74,6 +78,8 @@ void TcpServer::handleRemoveConnectionInLoop(const TcpConnectionPtr &conn)
     m_loop->assertInLoopThread(); // must be called in loop thread
     // 1. m_connections is not thread safe 2. m_connections.erase() is not thread safe
     m_connections.erase(conn->getFd());
+    LOG_INFO << "TcpServer::HandleCloseInLoop - remove connection " << "[" 
+           << conn->getIP() << ":" << conn->getPort() << "]\n";
     EventLoop *loop = conn->getLoop();
     loop->queueInLoop(std::bind(&TcpConnection::connectionDestructor, conn));
 }

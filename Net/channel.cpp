@@ -1,6 +1,7 @@
 #include "eventloop.h"
 #include "channel.h"
 #include <memory>
+#include "logging.h"
 
 Channel::~Channel()
 {
@@ -37,22 +38,23 @@ void Channel::handleEvent() const
 
 void Channel::handleEventWithGuard() const
 {
+    if (m_revents & EventType::kErrorEvent)
+    {
+        LOG_ERROR << "Channel::HandleEventWithGuard ERROR\n";
+        if (m_error_callback)
+            m_error_callback();
+    }
     if (m_revents & EPOLLHUP && !(m_revents & EPOLLIN))
     {
         if (m_close_callback)
             m_close_callback();
     }
-    if (m_revents & EPOLLERR)
-    {
-        if (m_error_callback)
-            m_error_callback();
-    }
-    if (m_revents & (EPOLLIN | EPOLLPRI | EPOLLRDHUP))
+    if (m_revents & (EventType::kReadEvent | EPOLLRDHUP))
     {
         if (m_read_callback)
             m_read_callback();
     }
-    if (m_revents & EPOLLOUT)
+    if (m_revents & EventType::kWriteEvent)
     {
         if (m_write_callback)
             m_write_callback();

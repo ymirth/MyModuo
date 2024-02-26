@@ -1,13 +1,16 @@
-#include "channel.h"
-#include "epoller.h"
-
-#include <vector>
 #include <sys/epoll.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
+
+#include <vector>
 #include <assert.h>
 #include <iostream>
+
+#include "channel.h"
+#include "epoller.h"
+#include "logging.h"
 
 Epoller::Epoller(int max_event_num) : 
     m_epoll_fd(::epoll_create1(EPOLL_CLOEXEC)), 
@@ -68,6 +71,7 @@ void Epoller::updateChannel(Channel *channel)
         int fd = channel->fd();
         assert(m_channels.find(fd) != m_channels.end());
         assert(m_channels[fd] == channel);
+        
         if(channel->isRegistered())  // events != 0
         {
             update(EPOLL_CTL_MOD, channel);
@@ -106,7 +110,7 @@ void Epoller::update(int op, Channel *channel)
     event.data.ptr = channel;         // void * <- Channel *
     if (epoll_ctl(m_epoll_fd, op, channel->fd(), &event) < 0)
     {
-        perror("epoll_ctl");
+        LOG_ERROR << "Epoller::UpdataChannel epoll_ctl failed\n"; 
     }
 }
 
@@ -125,7 +129,15 @@ void Epoller::poll(std::vector<Channel *> &active_channels)
     int num_events = this->wait();
     if(num_events < 0)
     {
-        perror("epoll_wait");
+        int error_code = errno;
+        // 根据错误类型进行特定的处理
+        if (error_code == EBADF) {
+            fprintf(stderr, "Invalid file descriptor.\n");
+        } else if (error_code == EFAULT) {
+            fprintf(stderr, "Bad address.\n");
+        } else if (error_code == EINTR) {
+            fprintf(stderr, "Interrupted system call.\n");
+        }
         return;
     }
     fillActiveChannels(num_events, active_channels);

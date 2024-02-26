@@ -2,21 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "cmake",
-            "request": "launch",
-            "name": "CMake: Configure project",
-            "cmakeDebugType": "configure",
-            "clean": false,
-            "configureAll": false
-        },
-        {
-            "name": "C++ Launch",
+            "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/${fileName}",
-            "args": [],
+            "program": "${workspaceRoot}/build/server",
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -25,31 +16,10 @@
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
-                },
-                {
-                    "description": "Enable GDB colors",
-                    "text": "-gdb-set mi-show-untranslated",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set GDB term to 'color'",
-                    "text": "set term color",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Enable GDB MI2 mode",
-                    "text": "--interpreter=mi2",
-                    "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build"
-        },
-        {
-            "name": "CMake: CMake Script",
-            "type": "cmake",
-            "request": "launch",
-            "cmakeDebugType": "script",
-            "scriptPath": "${file}"
+            "preLaunchTask": "build",
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

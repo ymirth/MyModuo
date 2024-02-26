@@ -1,72 +1,92 @@
 [
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/server.dir/main.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/main.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/server.dir/main.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/main.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/main.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/acceptor.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/acceptor.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/acceptor.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/acceptor.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/acceptor.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/buffer.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/buffer.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/buffer.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/buffer.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/buffer.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/channel.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/channel.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/channel.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/channel.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/channel.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/epoller.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/epoller.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/epoller.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/epoller.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/epoller.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/eventloop.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/eventloop.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/eventloop.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/eventloop.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/eventloop.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/loopthreadpool.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/loopthreadpool.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/loopthreadpool.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/loopthreadpool.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/loopthreadpool.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/tcpconnection.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpconnection.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/tcpconnection.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpconnection.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpconnection.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Net",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/netlib.dir/tcpserver.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpserver.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/netlib.dir/tcpserver.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpserver.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Net/tcpserver.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Http",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/httplib.dir/httpresponse.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/httplib.dir/httpresponse.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpresponse.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Http",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/httplib.dir/httprequest.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequest.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/httplib.dir/httprequest.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequest.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequest.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Http",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/httplib.dir/httpserver.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpserver.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/httplib.dir/httpserver.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpserver.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httpserver.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Http",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/httplib.dir/httprequestparser.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequestparser.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Http -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/httplib.dir/httprequestparser.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequestparser.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Http/httprequestparser.cpp"
 },
 {
   "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Timer",
-  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net    -o CMakeFiles/timerlib.dir/rbtreetimer.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Timer/rbtreetimer.cpp",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging    -o CMakeFiles/timerlib.dir/rbtreetimer.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Timer/rbtreetimer.cpp",
   "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Timer/rbtreetimer.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Logging",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/loglib.dir/logstream.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logstream.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logstream.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Logging",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/loglib.dir/logging.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logging.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logging.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Logging",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/loglib.dir/logfile.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logfile.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Logging/logfile.cpp"
+},
+{
+  "directory": "/home/ymirth/study/cpp_code/linux_learning/webserver/build/Logging",
+  "command": "/opt/rh/devtoolset-9/root/usr/bin/g++     -g -g -I/home/ymirth/study/cpp_code/linux_learning/webserver/Logging -I/home/ymirth/study/cpp_code/linux_learning/webserver/Net -I/home/ymirth/study/cpp_code/linux_learning/webserver/Timer    -o CMakeFiles/loglib.dir/asynclogging.cpp.o -c /home/ymirth/study/cpp_code/linux_learning/webserver/Logging/asynclogging.cpp",
+  "file": "/home/ymirth/study/cpp_code/linux_learning/webserver/Logging/asynclogging.cpp"
 }
 ]

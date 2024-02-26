@@ -9,7 +9,8 @@
 #include<assert.h>
 
 enum class ChannelIndex { kNew , kAdded , kDeleted };
-
+enum EventType { kNoneEvent = 0, kReadEvent = EPOLLIN | EPOLLPRI, kWriteEvent = EPOLLOUT , 
+                    kErrorEvent = EPOLLERR };
 class EventLoop;
 
 class Channel{
@@ -56,13 +57,13 @@ public:
     void handleEvent() const;
     void handleEventWithGuard() const;
 
-    void enableReading() { m_events |= (EPOLLIN | EPOLLPRI); update(); }
-    void enableWriting() { m_events |= EPOLLOUT; update(); }
-    void disableReading() { m_events &= ~EPOLLIN; update(); }
-    void disableWriting() { m_events &= ~EPOLLOUT; update(); }
-    void disableAll() { m_events = 0; update(); }
-    bool isReading() const { return (m_events & (EPOLLIN | EPOLLPRI)); }   // whether EPOLLIN is registered
-    bool isWriting() const { return (m_events & EPOLLOUT); }               // whether EPOLLOUT is registered
+    void enableReading() { m_events |= EventType::kReadEvent; update(); }
+    void enableWriting() { m_events |= EventType::kWriteEvent; update(); }
+    void disableReading() { m_events &= ~EventType::kReadEvent; update(); }
+    void disableWriting() { m_events &= ~EventType::kWriteEvent; update(); }
+    void disableAll() { m_events = EventType::kNoneEvent; update(); }
+    bool isWriting() const { return m_events & EventType::kWriteEvent; }
+    bool isReading() const { return m_events & EventType::kReadEvent; }
 };
 
 #endif

@@ -1,0 +1,2 @@
+/opt/rh/devtoolset-9/root/usr/bin/ar cq libloglib.a  CMakeFiles/loglib.dir/logstream.cpp.o CMakeFiles/loglib.dir/logging.cpp.o CMakeFiles/loglib.dir/logfile.cpp.o CMakeFiles/loglib.dir/asynclogging.cpp.o
+/opt/rh/devtoolset-9/root/usr/bin/ranlib libloglib.a

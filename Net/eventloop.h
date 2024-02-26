@@ -9,10 +9,14 @@
 #include <mutex>
 #include <thread>
 #include <iostream>
+#include <chrono>
+
 
 #include"epoller.h"
+#include"timestamp.h"
+#include"rbtreetimer.h"
+#include"logging.h"
 
-class RBTreeTimer;
 class Channel;
 
 class EventLoop
@@ -54,6 +58,21 @@ public:
     void remove(Channel *channel) { m_epoller->removeChannel(channel); }
     bool hasChannel(Channel *channel) const{    return m_epoller->hasChannel(channel);}
 
+    // Timer
+    void runAfter(const double second, std::function<void()> cb)
+    {
+        auto now = Timestamp::now();
+        Timestamp when = Timestamp::addTime(now, second);
+        m_timer->addTimer(std::move(cb), when, 0.0);
+    }
+    void runEvery(const double second, std::function<void()> cb)
+    {
+        Timestamp when = Timestamp::addTime(Timestamp::now(), second);
+        m_timer->addTimer(std::move(cb), when, second);
+    }
+    
+
+
     bool isInLoopThread() const
     {
         return m_thread_id == std::this_thread::get_id();
@@ -62,7 +81,8 @@ public:
     {
         if (!isInLoopThread())
         {
-            std::cout<<"EventLoop was created in thread {" <<m_thread_id<<"}, the current thread id is {"<<std::this_thread::get_id()<<"}"<<std::endl;
+            // std::cout<<"EventLoop was created in thread {" <<m_thread_id<<"}, the current thread id is {"<<std::this_thread::get_id()<<"}"<<std::endl;
+            LOG_ERROR<<"EventLoop was created in thread {" << std::hash<std::thread::id>{}(m_thread_id)<<"}, the current thread id is {"<<std::hash<std::thread::id>{}(std::this_thread::get_id())<<"}\n";
             abort();
         }
     }

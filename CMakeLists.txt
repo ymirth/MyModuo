@@ -16,13 +16,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 add_subdirectory(Net)
 add_subdirectory(Http)
 add_subdirectory(Timer)
+add_subdirectory(Logging)
 
 # 链接子目录生成的库到可执行文件
-target_link_libraries(server pthread netlib httplib timerlib)
+target_link_libraries(server pthread netlib httplib timerlib loglib)
 
 # 添加头文件搜索路径
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Net)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Http)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Timer)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Logging)
 
 

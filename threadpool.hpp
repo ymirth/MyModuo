@@ -18,7 +18,7 @@
 class threadpool
 {
 public:
-    threadpool(int thread_number = 8, int max_requests = 10000);
+    threadpool(int thread_number = 8);
     ~threadpool();
 
     void init();     // initialize thread pool
@@ -40,11 +40,12 @@ private:
     std::condition_variable m_cv;                                                                                   
     std::vector<std::shared_ptr<std::thread>> m_threads;
     bool m_stop;
+    int m_thread_number;
 };
 
-threadpool::threadpool(int thread_number) : m_stop(false)
+threadpool::threadpool(int thread_number) : m_stop(false), m_thread_number(thread_number)
 {
-    if (thread_number <= 0 || max_requests <= 0)
+    if (thread_number <= 0 )
     {
         throw std::exception();
     }
@@ -52,7 +53,7 @@ threadpool::threadpool(int thread_number) : m_stop(false)
 
 void threadpool::init()
 {
-    for (int i = 0; i < thread_number; ++i)
+    for (int i = 0; i < m_thread_number; ++i)
     {
         m_threads.emplace_back(std::make_shared<std::thread>(&threadpool::threadFunc, this));
     }

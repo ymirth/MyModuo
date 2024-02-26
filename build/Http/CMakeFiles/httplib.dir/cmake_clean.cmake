@@ -1,4 +1,4 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/httplib.dir/httpresponse.cpp.o"
   "CMakeFiles/httplib.dir/httprequest.cpp.o"
   "CMakeFiles/httplib.dir/httpserver.cpp.o"
@@ -8,6 +8,6 @@ FILE(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/httplib.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang CXX)
+  include(CMakeFiles/httplib.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

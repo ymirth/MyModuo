@@ -27,33 +27,31 @@ HttpRequestParseState HttpRequestParser::parseContent(Buffer *buffer)
         case HttpRequestParseState::kParseHeader:
         { // parseHeader(const char *start, const char *end)
             auto line = std::string(lineStart, crlf);
-            if (line.size() == 0)
+            auto colon = std::find(lineStart, crlf, ':');
+            if (line.empty())
             {
-                m_state = HttpRequestParseState::kParseBody;
-
                 m_state = HttpRequestParseState::kParseGotCompleteRequest;
-                return m_state;
+            }
+            else if (colon != crlf)
+            {
+                m_request.addHeader(lineStart, colon, crlf);
             }
             else
             {
-                auto colon = std::find(lineStart, crlf, ':');
-                if (colon != crlf)
-                {
-                    m_request.addHeader(lineStart, colon, crlf);
-                }
-                else
-                {
-                    m_state = HttpRequestParseState::kParseErrno;
-                    return m_state;
-                }
+                m_state = HttpRequestParseState::kParseErrno;
+                return m_state;
             }
             break;
         }
         case HttpRequestParseState::kParseBody:
         {
-            m_state = HttpRequestParseState::kParseGotCompleteRequest;
-            return m_state;
-            if (m_request.parseRequestBody(lineStart, crlf))
+            auto line = std::string(lineStart, crlf);
+            if (line.empty())
+            {
+                m_state = HttpRequestParseState::kParseGotCompleteRequest;
+                return m_state;
+            }
+            else if (m_request.parseRequestBody(lineStart, crlf))
             {
                 m_state = HttpRequestParseState::kParseGotCompleteRequest;
                 return m_state;
@@ -71,6 +69,11 @@ HttpRequestParseState HttpRequestParser::parseContent(Buffer *buffer)
             return m_state;
         }
         }
+        if(buffer->readableBytes() == 0 && m_state == HttpRequestParseState::kParseBody)
+        {
+            m_state = HttpRequestParseState::kParseGotCompleteRequest;
+        }
+            
     }
     return m_state;
 }

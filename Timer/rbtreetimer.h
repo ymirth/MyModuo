@@ -38,6 +38,7 @@ private:
     bool insertTimer(const std::shared_ptr<Timer> &timer);
     void resetTimerFd(const std::shared_ptr<Timer> &timer);
     void handleRepeatTimer(const std::shared_ptr<Timer> &timer);
+    void enableTimerfd();                                      // enable timerfd
 
     // void resetTimerfd(Timestamp expiration);
 

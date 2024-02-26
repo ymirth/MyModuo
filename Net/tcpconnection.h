@@ -12,6 +12,7 @@
 #include"buffer.h"
 #include"channel.h"
 #include"httprequestparser.h"
+#include"timestamp.h"
 
 class EventLoop;
 class Address;
@@ -60,6 +61,8 @@ public:
     void handleError();
     void handleClose();   // handleClose() -> connectionDestructor()
 
+
+
     // Thread safe api: can be called in other threads
     void shutDown(); 
     void shutDownInLoop();  // must be called in loop thread
@@ -83,15 +86,20 @@ public:
     int getFd() const { return m_conn_fd; }
     int getId() const { return m_conn_id; }
     EventLoop* getLoop() const { return m_loop; }
-    int getErrno() const{ return errno; }
+    int getErrno() const;
+    Timestamp getLastReceiveTime() const { return m_last_receive_time; }
     HttpRequestParser* getHttpRequestParser() { return &m_parser; }
 
     bool isShutdown() const { return m_state == ConnectionState::kDisconnecting; }
     bool isConnected() const { return m_state == ConnectionState::kConnected; }
     bool isDisconnected() const { return m_state == ConnectionState::kDisconnected; }
     bool isConnecting() const { return m_state == ConnectionState::kConnecting; }
-    // const std::string& getIpPort() const { return m_ipport; }
-    // HttpContent* GetHttpContent() { return &content_; }
+
+    void updateLastReceiveTime() { m_last_receive_time = Timestamp::now(); }
+
+    void setIPPort(const char* ip, int port) { this->ip = ip; this->port = port; }
+    const char* getIP() const { return ip; }
+    int getPort() const { return port; }
 private:
     ConnectionCallback m_connection_callback;
     MessageCallback m_message_callback;
@@ -105,9 +113,9 @@ private:
     Buffer m_input_buffer;
     Buffer m_output_buffer;
     HttpRequestParser m_parser;
-
-    // httpcontent
-    // timestamp
+    Timestamp m_last_receive_time;
+    const char* ip;
+    int port;
 };
 
 #endif

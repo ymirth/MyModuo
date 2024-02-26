@@ -1,8 +1,3 @@
-#include "channel.h"
-#include "eventloop.h"
-#include "address.h"
-#include "acceptor.h"
-
 #include<fcntl.h>
 #include<sys/types.h>
 #include<netinet/tcp.h>
@@ -13,7 +8,13 @@
 #include<errno.h>
 
 #include<functional>
+#include<iostream>
 
+#include "channel.h"
+#include "eventloop.h"
+#include "address.h"
+#include "acceptor.h"
+#include "logging.h"
 
 static void Bind(int listen_fd, const Address &address)
 {
@@ -79,7 +80,8 @@ void Acceptor::Listen()
     这是一种常见的技巧，用于处理"too many open files"的错误。
 */
 Acceptor::Acceptor(EventLoop *loop, const Address &address) : 
-    m_listen_fd(socket(AF_INET, SOCK_STREAM, 0)),
+    // non-blocking and close-on-exec (新的进程不会继承该文件描述符) and TCP No Delay
+    m_listen_fd(socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP)),
     m_idle_fd(::open("/dev/null", O_RDONLY | O_CLOEXEC)),
     m_address(address), m_loop(loop), 
     m_accept_channel(new Channel(m_loop, m_listen_fd))
@@ -90,8 +92,6 @@ Acceptor::Acceptor(EventLoop *loop, const Address &address) :
         exit(1);
     }
     setReuseAddr(m_listen_fd);
-    setKeepAlive(m_listen_fd);
-    setTcpNoDelay(m_listen_fd);
     Bind(m_listen_fd, m_address);
     // Listen(m_listen_fd);
 
@@ -118,6 +118,7 @@ void Acceptor::handleConnect()
     {
         if(errno == EMFILE)  // EMFILE: too many open files
         {
+            LOG_ERROR << "acceptor: too many open files\n";
             close(m_idle_fd);
             m_idle_fd = accept(m_listen_fd, nullptr, nullptr);
             close(m_idle_fd);
@@ -125,6 +126,8 @@ void Acceptor::handleConnect()
         }
         return;
     }
+    setKeepAlive(conn_fd);
+    setTcpNoDelay(conn_fd);
     if(m_new_connection_callback)
     {
         // sockaddr_in -> Address(char* ip, int port)

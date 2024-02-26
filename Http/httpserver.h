@@ -16,12 +16,18 @@
 #include "httprequestparser.h"
 #include "httpresponse.h"
 
+#include "timestamp.h"
+
+#include "logging.h"
+
+static const double kIdleConnectionTimeOuts = 8.0;
+
 class HttpServer
 {
     using HttpResponseCallback = std::function<void(const HttpRequest &, HttpResponse *)>;
 
 public:
-    HttpServer(EventLoop *loop, const Address &addr, bool close_flag = false);
+    HttpServer(EventLoop *loop, const Address &addr, bool close_flag = true);
     ~HttpServer();
 
     void start();
@@ -32,10 +38,11 @@ public:
     void setResponseCallback(const HttpResponseCallback &cb) { m_response_callback = cb; }
     void setResponseCallback(HttpResponseCallback &&cb) { m_response_callback = std::move(cb); }
 
-    void onConnection(const TcpConnectionPtr &conn);
+    void onConnection(const TcpConnectionPtr &conn, Buffer *buffer);
     void onMessage(const TcpConnectionPtr &conn, Buffer *buffer);
 
     void handleRequest(const TcpConnectionPtr &conn, const HttpRequest &request);
+    void handleIdleConnection(const std::weak_ptr<TcpConnection> &conn);
 private:
     EventLoop *m_loop;
     std::unique_ptr<TcpServer> m_server;

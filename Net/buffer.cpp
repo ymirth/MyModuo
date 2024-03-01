@@ -1,4 +1,5 @@
 #include"buffer.h"
+#include"logging.h"
 #include<sys/uio.h>
 
 int Buffer::readFd(int fd)
@@ -16,6 +17,7 @@ int Buffer::readFd(int fd)
     if(n < 0)
     {
         //log errors
+        LOG_ERROR<<"readv error\n";
         return -1;
     }
     else if(n <= writeable)

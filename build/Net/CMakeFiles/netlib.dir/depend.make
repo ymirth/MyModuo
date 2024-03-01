@@ -13,6 +13,9 @@ Net/CMakeFiles/netlib.dir/acceptor.cpp.o: ../Net/channel.h
 Net/CMakeFiles/netlib.dir/acceptor.cpp.o: ../Net/epoller.h
 Net/CMakeFiles/netlib.dir/acceptor.cpp.o: ../Net/eventloop.h
 
+Net/CMakeFiles/netlib.dir/buffer.cpp.o: ../Logging/logging.h
+Net/CMakeFiles/netlib.dir/buffer.cpp.o: ../Logging/logstream.h
+Net/CMakeFiles/netlib.dir/buffer.cpp.o: ../Timer/timestamp.h
 Net/CMakeFiles/netlib.dir/buffer.cpp.o: ../Net/buffer.cpp
 Net/CMakeFiles/netlib.dir/buffer.cpp.o: ../Net/buffer.h
 

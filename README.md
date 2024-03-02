@@ -67,6 +67,20 @@ This web server is built on the Muduo framework, incorporating various features 
 - Utilizes readv for scattered read, then increases the buffer size.
 - Uses write for gathered write.
 
+
+### Log System : Asynchronous Logging and Log File Rolling
+- LogFile:
+  - Writes logs to a file.
+  - Rolls the log file when the file size exceeds the maximum size.
+- LogStream:
+  - Formats logs.
+  - Uses a fixed buffer to store logs.
+- Logger:
+  - Asynchronous logging + Sync logging.
+  - Sync logging: writes logs to a buffer and call async logging when destructed.
+  - Async logging: use 4 buffers to store logs and swap the buffer when full.
+  - Uses condition variable to notify the logging thread to write logs to the file.
+
 ## Resource Ownership
 
 ### FD Ownership: RAII

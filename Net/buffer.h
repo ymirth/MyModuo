@@ -56,6 +56,7 @@ public:
         ensureWriteableBytes(len);
         std::copy(data, data + len, curWritePtr());
         moveWriteIndex(len);
+        
     }
     void append(const char* msg)
     {

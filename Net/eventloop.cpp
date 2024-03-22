@@ -67,6 +67,9 @@ void EventLoop::loop()
         m_epoller->poll(m_active_channels);
         for(const auto& channel : m_active_channels)
         {
+            // if(channel->fd() == 10){
+            //     std::cout<<"channel fd is 10"<<std::endl;
+            // } //DEBUG Timer_Fd
             channel->handleEvent();
         }
         this->doPendingFunctors();

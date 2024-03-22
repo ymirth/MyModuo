@@ -14,7 +14,7 @@
 #include "logfile.h"
 
 static const double kFlushInterval = 3.0;
-static const int64_t kRollSize = 1024 * 1024 * 1024;
+static const int64_t kRollSize = 1024 * 1024 * 32; // 32MB
 
 class AsyncLogging
 {

@@ -29,8 +29,9 @@ public:
 
 public:
     // handleRead() -> handleRepeatTimer() -> resetTimerfd(Timestamp expiration)
+    void enableTimerfd();                                      // enable timerfd
     void handleRead();                                         // handle read event in eventloop
-
+    
     // Thread safe API for adding timer
     void addTimer(const TimerCallback &&cb, const Timestamp &when, double interval);
     void addTimerInLoop(const std::shared_ptr<Timer> &timer);  // must be called in loop thread
@@ -38,7 +39,7 @@ private:
     bool insertTimer(const std::shared_ptr<Timer> &timer);
     void resetTimerFd(const std::shared_ptr<Timer> &timer);
     void handleRepeatTimer(const std::shared_ptr<Timer> &timer);
-    void enableTimerfd();                                      // enable timerfd
+    
 
     // void resetTimerfd(Timestamp expiration);
 

@@ -25,7 +25,7 @@ TcpConnection::TcpConnection(EventLoop *loop, int conn_fd, int conn_id)
 
 TcpConnection::~TcpConnection()
 {
-    std::cout << "TcpConnection::~TcpConnection()" << std::endl;
+    // std::cout << "TcpConnection::~TcpConnection()" << std::endl;
     ::close(m_conn_fd);
 }
 
@@ -53,8 +53,8 @@ void TcpConnection::connectionDestructor()
 void TcpConnection::handleRead()
 {
     m_loop->assertInLoopThread();
-    // int saved_errno = 0;
-    ssize_t n = m_input_buffer.readFd(m_conn_fd);
+    int saved_errno = 0;
+    ssize_t n = m_input_buffer.readFd(m_conn_fd, saved_errno);
     if (n > 0)
     {
         m_message_callback(shared_from_this(), &m_input_buffer);
@@ -64,8 +64,38 @@ void TcpConnection::handleRead()
         handleClose();
     }
     else
-    {
-        LOG_ERROR << "TcpConnection::HandleMessage read failed\n";
+    {   
+        std::string error_msg;
+        switch (saved_errno)
+        {
+            case EAGAIN:
+                error_msg = "EAGAIN: Resource temporarily unavailable";
+                break;
+            case EBADF:
+                error_msg = "EBADF: Bad file descriptor";
+                break;
+            case EFAULT:
+                error_msg = "EFAULT: IOV buffer not in accessible memory";
+                break;
+            case EINTR:
+                error_msg = "EINTR: Interrupted system call";
+                break;
+            case EINVAL:
+                error_msg = "EINVAL: Invalid argument";
+                break;
+            case EIO:
+                error_msg = "EIO: I/O error";
+                break;
+            case ENOMEM:
+                error_msg = "ENOMEM: Out of memory";
+                break;
+            default:
+                error_msg = strerror(saved_errno);
+                break;
+        }
+        if(saved_errno != EAGAIN) handleClose();
+        LOG_ERROR << "TcpConnection::HandleMessage readv failed: " << error_msg << " (errno: " << saved_errno << ")\n";
+        handleError();
     }
 }
 
@@ -108,14 +138,8 @@ int TcpConnection::getErrno() const
 
 void TcpConnection::handleError()
 {
-    int optval;
-    socklen_t optlen = static_cast<socklen_t>(sizeof optval);
-    int err = ::getsockopt(m_conn_fd, SOL_SOCKET, SO_ERROR, &optval, &optlen);
-    if (err < 0)
-    {
-        LOG_ERROR << "TcpConnection::HandleError"
-                  << " : " << ErrorToString(getErrno())<<"\n";
-    }
+    int err = getErrno();
+    LOG_ERROR << "TcpConnection::handleError [" << m_conn_id << "] - SO_ERROR = " << err << " " << strerror(err) << "\n";
 }
 
 void TcpConnection::handleClose()
@@ -133,6 +157,7 @@ void TcpConnection::shutDown()
     if (m_state == ConnectionState::kConnected)
     {
         m_state = ConnectionState::kDisconnecting;
+        LOG_INFO << "TcpConnection::Shutdown connection " << m_conn_id << "\n";
         m_loop->runInLoop(std::bind(&TcpConnection::shutDownInLoop, this));
     }
 }
@@ -145,7 +170,19 @@ void TcpConnection::shutDownInLoop()
         int ret = ::shutdown(m_conn_fd, SHUT_WR);
         if (ret < 0)
         {
-            LOG_ERROR << "TcpConnection::Shutdown shutdown failed\n";
+            int error = errno; // Save errno immediately
+            switch(error) {
+                case EIO:
+                    LOG_ERROR << "TcpConnection::Shutdown I/O error occurred: " << strerror(error) << " (errno: " << error << ")\n";
+                    break;
+                case ECONNRESET:
+                    LOG_ERROR << "TcpConnection::Shutdown connection reset by peer: " << strerror(error) << " (errno: " << error << ")\n";
+                    break;
+                // Add more cases as needed for specific errno values
+                default:
+                    LOG_ERROR << "TcpConnection::Shutdown error: " << strerror(error) << " (errno: " << error << ")\n";
+                    break;
+            }
         }
     }
 }

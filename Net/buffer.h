@@ -129,7 +129,7 @@ public:
     }
     
     // 读取fd中的数据到缓存中
-    int readFd(int fd); 
+    int readFd(int fd, int saved_err); 
 };
 
 #endif

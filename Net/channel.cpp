@@ -5,9 +5,9 @@
 
 Channel::~Channel()
 {
-    if(m_loop->hasChannel(this))
+    if (m_loop->hasChannel(this))
     {
-        this->disableAll();   // disable all events of channel in epoll 
+        this->disableAll();   // disable all events of channel in epoll
         m_loop->remove(this); // remove channel from epoll
     }
 }
@@ -40,22 +40,26 @@ void Channel::handleEventWithGuard() const
 {
     if (m_revents & EventType::kErrorEvent)
     {
-        LOG_ERROR << "Channel::HandleEventWithGuard ERROR\n";
+        // std::cout<<"error event fd: "<<m_fd<<std::endl;
         if (m_error_callback)
             m_error_callback();
+
     }
     if (m_revents & EPOLLHUP && !(m_revents & EPOLLIN))
     {
+        // std::cout<<"hup event fd: "<<m_fd<<std::endl;
         if (m_close_callback)
             m_close_callback();
     }
     if (m_revents & (EventType::kReadEvent | EPOLLRDHUP))
     {
+        // std::cout<<"read event fd: "<<m_fd<<std::endl;
         if (m_read_callback)
             m_read_callback();
     }
     if (m_revents & EventType::kWriteEvent)
     {
+        // std::cout<<"write event fd: "<<m_fd<<std::endl;
         if (m_write_callback)
             m_write_callback();
     }

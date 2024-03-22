@@ -76,7 +76,7 @@ const char favicon[555] = {
   'B', '\x60', '\x82',
 };
 
-const std::string love6_website = R"(
+const std::string website = R"(
         <!DOCTYPE html>
         <html lang="en">
         <head>

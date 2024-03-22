@@ -63,6 +63,7 @@ public:
     {
         auto now = Timestamp::now();
         Timestamp when = Timestamp::addTime(now, second);
+        LOG_INFO << "runAfter: now = " << now.toString() << ", when = " << when.toString() << "\n";
         m_timer->addTimer(std::move(cb), when, 0.0);
     }
     void runEvery(const double second, std::function<void()> cb)

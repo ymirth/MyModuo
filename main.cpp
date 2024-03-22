@@ -14,6 +14,8 @@
 #include "logging.h"
 #include "asynclogging.h"
 
+#include "rbtreetimer.h"
+
 #include <iostream>
 #include <memory>
 using std::cout;
@@ -24,6 +26,7 @@ using std::cout;
 std::unique_ptr<AsyncLogging> asynclog;
 extern void setOutput(Logger::OutputFunc);
 extern void setFlush(Logger::FlushFunc);
+extern void setLogLevel(Logger::LogLevel);
 
 void AsyncOutputFunc(const char* data, int len) {
   asynclog->append(data, len);
@@ -53,7 +56,7 @@ void resCallback(const HttpRequest &request, HttpResponse *resp)
             response.setStatusCode(HttpStatusCode::k200OK);
             response.setStatusMessage("OK");
             response.setContentType("text/html");
-            response.setBody(love6_website);
+            response.setBody(website);
         }
         else if (path == "/hello")
         {
@@ -79,9 +82,16 @@ void resCallback(const HttpRequest &request, HttpResponse *resp)
     }
 }
 
+// timerEvent
+void timerEvent()
+{
+    // cout << "timerEvent\n";
+}
+
 int main(int argc, char *argv[])
 {
     //log config
+    setLogLevel(Logger::LogLevel::INFO);
     asynclog.reset(new AsyncLogging("./log"));
     setOutput(AsyncOutputFunc);
     setFlush(AsyncFlushFunc);
@@ -97,6 +107,8 @@ int main(int argc, char *argv[])
     server.setThreadNum(std::thread::hardware_concurrency()+1);
     server.setResponseCallback(resCallback);
     server.start();
+
+    loop.runAfter(5.0, timerEvent);
     loop.loop();
     return 0;
 }

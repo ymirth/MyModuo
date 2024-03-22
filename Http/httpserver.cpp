@@ -94,6 +94,8 @@ void HttpServer::handleRequest(const TcpConnectionPtr &conn, const HttpRequest &
     // std::cout<<"send times is "<<++sendtimes<<std::endl;
     if (response.closeConnection())
     {
+        // resquest close from client
+        LOG_DEBUG << "close connection by client\n";
         conn->shutDown();
     }
 }
@@ -101,14 +103,16 @@ void HttpServer::handleRequest(const TcpConnectionPtr &conn, const HttpRequest &
 
 void HttpServer::handleIdleConnection(const std::weak_ptr<TcpConnection> &conn)
 {
+    // std::cout<<"handleIdleConnection\n";
     auto connection = conn.lock();
     if (connection)
     {   
         auto time1 = Timestamp::addTime(connection->getLastReceiveTime(), kIdleConnectionTimeOuts);
+        LOG_DEBUG << connection->getLastReceiveTime().toString() << "\n"<< time1.toString() << "\n";
         auto time2 = Timestamp::now();
         if(Timestamp::addTime(connection->getLastReceiveTime(), kIdleConnectionTimeOuts) < Timestamp::now())
         {
-            LOG_INFO << "connection " << connection->getId() << " is idle for a long time \n";
+            LOG_INFO << "Connection : " << connection->getId() << " is Idle For a Long Time : " << kIdleConnectionTimeOuts << "s\n";
             connection->shutDown();
         }
         else

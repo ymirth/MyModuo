@@ -17,7 +17,7 @@ class Channel{
 private:
     void update();
 public:
-    Channel(EventLoop* loop, int n_fd) : m_fd(n_fd), m_loop(loop), m_events(0), m_revents(0), m_index(ChannelIndex::kNew) {}
+    Channel(EventLoop* loop, int n_fd) : m_fd(n_fd), m_loop(loop), m_events(0), m_revents(0), m_index(ChannelIndex::kNew), m_tied(false) {}
     ~Channel();
     
     int fd() const { return m_fd; }

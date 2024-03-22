@@ -1,8 +1,9 @@
 #include"buffer.h"
 #include"logging.h"
 #include<sys/uio.h>
+#include<errno.h>
 
-int Buffer::readFd(int fd)
+int Buffer::readFd(int fd, int saved_err)
 {
     char extrabuf[64 * 1024];
     struct iovec vec[2];  // 两个缓冲区
@@ -16,8 +17,7 @@ int Buffer::readFd(int fd)
     const int n = ::readv(fd, vec, iovcnt);
     if(n < 0)
     {
-        //log errors
-        LOG_ERROR<<"readv error\n";
+        saved_err = errno;
         return -1;
     }
     else if(n <= writeable)

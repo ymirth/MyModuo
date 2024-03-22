@@ -18,7 +18,7 @@ Epoller::Epoller(int max_event_num) :
 {
     if (m_epoll_fd < 0)
     {
-        perror("epoll_create");
+        LOG_ERROR << "Epoller::Epoller epoll_create1 failed\n";
         exit(1);
     }
 }
@@ -132,12 +132,12 @@ void Epoller::poll(std::vector<Channel *> &active_channels)
         int error_code = errno;
         // 根据错误类型进行特定的处理
         if (error_code == EBADF) {
-            fprintf(stderr, "Invalid file descriptor.\n");
+            LOG_DEBUG << "Epoller::poll() EBADF : epoll fd is not a valid file descriptor.\n";
         } else if (error_code == EFAULT) {
-            fprintf(stderr, "Bad address.\n");
+            LOG_DEBUG << "Epoller::poll() EFAULT : The memory area pointed to by events is not accessible.\n";
         } else if (error_code == EINTR) {
-            fprintf(stderr, "Interrupted system call.\n");
-        }
+            LOG_DEBUG << "Epoller::poll() EINTR : Interrupted system call.\n";
+        } 
         return;
     }
     fillActiveChannels(num_events, active_channels);
